@@ -6,6 +6,12 @@ module Visible
   included do
     validates :status, inclusion { in: VALID_STATUSES }
   end
+
+  class_method do
+    def public_count
+      where(status: 'public').public_count
+    end
+  end
   
   def archived?
     status == 'archived'
